@@ -3,13 +3,13 @@
 from flask import Flask
 from flask.ext.pagedown import PageDown
 from flaskext.markdown import Markdown
-
+import settings
 
 flasktemplate = Flask(__name__)
-flasktemplate.appname = 'Flask Template'
-flasktemplate.appnamed = 'flasktemplate'
-flasktemplate.config.SECRET_KEY = 'enydM2ANhdcoKwdVa0jWvEsbPFuQpMjf'
-flasktemplate.config.SESSION_PROTECTION = 'strong'
+flasktemplate.appname = settings.appname
+flasktemplate.appnamed = settings.appnamed
+flasktemplate.config.SECRET_KEY = settings.SECRET_KEY
+flasktemplate.config.SESSION_PROTECTION = settings.SESSION_PROTECTION
 
 pagedown = PageDown(flasktemplate)
 Markdown(flasktemplate)
