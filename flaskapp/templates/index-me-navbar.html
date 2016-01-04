@@ -1,0 +1,16 @@
+<div class=" navbar navbar-fixed-top navbar navbar-default">
+    <div class="navbar-inner">
+        <div class="container">
+            <a href="{{ url_for('.home') }}" class="brand">{{ appname() }}</a>
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="{{ url_for('.note') }}">Note</a>
+                </li>
+                </li>
+                <li>
+                   <a href="{{ url_for('.notemd') }}">Note MD</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

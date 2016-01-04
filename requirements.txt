@@ -1,0 +1,12 @@
+flask
+flask-Login
+flask-Script
+flask-SQLAlchemy
+flask-classy
+flask-admin
+cherrypy
+WTForms
+SQLAlchemy
+flask-markdown
+flask-pagedown
+flask-wtf

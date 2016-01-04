@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Search Results
+{% endblock title %}
+
+{% block extrahead %}
+    {{ pagedown.html_head() }}
+    <style type="text/css">
+
+    </style>
+{% endblock extrahead %}
+
+{% block main %}
+
+    <div class="content">
+        <form method="POST">
+            {{ form.pagedown(rows = 15) }}
+            {{ form.submit }}
+        </form>
+    </div>
+
+{% endblock main %}

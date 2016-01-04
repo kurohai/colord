@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Edit Note
+{% endblock title %}
+
+{% block extrahead %}
+    {{ pagedown.html_head() }}
+
+
+     <script src="//cdn.jsdelivr.net/ace/1.2.0/min/ace.js" type="text/javascript" charset="utf-8"></script>
+     <script src="//cdn.jsdelivr.net/ace/1.2.0/min/ext-beautify.js" type="text/javascript" charset="utf-8"></script>
+
+    <style type="text/css" media="screen">
+
+        #editor { 
+            height: 500px;
+            width: 90%;
+            margin-left: 4.5%;
+        }
+
+        #note-content {
+            margin-top: 100px;
+            margin-bottom: 200px;
+        }
+
+    </style>
+
+{% endblock extrahead %}
+
+{% block main %}
+
+    <div class="content">
+
+        <div id="editor">{{ text }}</div>
+        <div id="note-content">{{ text|markdown }}</div>
+
+    </div>
+
+
+
+    <script>
+        // if (typeof flask_pagedown_converter === "undefined")
+        flask_pagedown_converter = Markdown.getSanitizingConverter().makeHtml;
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/pastel_on_dark");
+        editor.getSession().setMode("ace/mode/markdown");
+        editor.getSession().on('change', function(e) {
+            var textnew = editor.getValue();
+            var notecontent = document.getElementById("note-content");
+            notecontent.innerHTML = flask_pagedown_converter(textnew); 
+            
+        });
+
+    </script>
+
+
+{% endblock main %}
