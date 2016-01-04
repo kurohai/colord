@@ -15,6 +15,13 @@ from decimal import *
 from flaskapp import Base
 from log_models import *
 
+
+
+class BaseMixin(dicto):
+    """docstring for BaseMixin"""
+    def __init__(self):
+        super(BaseMixin, self).__init__()
+        
 class User(Base):
 
     """A user login, with credentials and authentication."""
@@ -83,3 +90,24 @@ class User(Base):
 
     def __repr__(self):
         return u'<{self.__class__.__name__}: {self.id} Username: {self.username}>'.format(self=self)
+
+
+class ColorSet(Base):
+    """docstring for ColorSet"""
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    date = Column(DateTime, default=datetime.datetime.now)
+    color_id = Column(Integer, ForeignKey('color.id'))
+
+
+
+class Color(Base):
+    """docstring for Color"""
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String, unique=True)
+    colorset_id = Column(Integer, ForeignKey('colorset.id'))
+
+    colorset = relationship(
+        'ColorSet',
+        backref='color',
+        primaryjoin="Color.colorset_id==ColorSet.id",
+    )
