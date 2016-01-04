@@ -3,7 +3,7 @@
 # @Author: kurohai
 # @Date:   2015-11-18 21:47:31
 # @Last Modified by:   root
-# @Last Modified time: 2016-01-04 07:22:04
+# @Last Modified time: 2016-01-04 07:45:23
 
 
 from sqlalchemy.orm import Session, scoped_session, sessionmaker
@@ -25,10 +25,10 @@ appname = settings.appname
 appnamed = settings.appnamed
 SECRET_KEY = settings.SECRET_KEY
 
-pwd = os.path.abspath(os.curdir)
+pwd = settings.pwd
 
-dbpath = '{dir}/{app}.db'.format(dir=pwd, app=appnamed)
-dburi = 'sqlite:///{db}'.format(db=dbpath)
+dbpath = settings.dbpath
+dburi = settings.dburi
 
 
 @as_declarative()
