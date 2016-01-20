@@ -1,7 +1,7 @@
-from sqlalchemy import Column
+from sqlalchemy import Column, Table
 from sqlalchemy.types import DateTime, Integer, String
 import datetime
-from sqlalchemy import Column, ForeignKey, Float
+from sqlalchemy import Column, ForeignKey, Float, Date
 from sqlalchemy import Boolean, DateTime, Integer
 from sqlalchemy import String, Text, BigInteger
 from sqlalchemy.orm import relationship, synonym
@@ -95,19 +95,17 @@ class User(Base):
 class ColorSet(Base):
     """docstring for ColorSet"""
     id = Column(Integer, primary_key=True, autoincrement=True)
-    date = Column(DateTime, default=datetime.datetime.now)
-    color_id = Column(Integer, ForeignKey('color.id'))
+    date = Column(Date, default=datetime.datetime.today, unique=True)
 
+    colors = relationship(
+        'Color',
+        backref='colorset',
+        primaryjoin="ColorSet.id==Color.colorset_id",
+    )
 
 
 class Color(Base):
     """docstring for Color"""
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String, unique=True)
+    name = Column(String, unique=True, nullable=False)
     colorset_id = Column(Integer, ForeignKey('colorset.id'))
-
-    colorset = relationship(
-        'ColorSet',
-        backref='color',
-        primaryjoin="Color.colorset_id==ColorSet.id",
-    )

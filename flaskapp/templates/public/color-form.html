@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{{ appname() }}{% endblock title %}
+
+{% block main %}
+<div class="row">
+  <div class="form well offset2 span8">
+    <form method="post" class="form-horizontal">
+        <legend>Add Colors</legend>
+        <div>{{ form.colors }}</div>
+      <div class="form-actions">
+        <button type="submit" class="btn">Add</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock main %}

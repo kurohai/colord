@@ -62,7 +62,7 @@ def data():
     for i in d:
         print i.date
         print i.id
-        for c in i.color:
+        for c in i.colors:
             print c.name
 
 
@@ -78,7 +78,7 @@ def quick():
 
 @manager.command
 def go():
-    flasktemplate.run(debug=True, host='0.0.0.0', port=8080)
+    flasktemplate.run(debug=True, host='0.0.0.0', port=80)
 
 
 if __name__ == '__main__':

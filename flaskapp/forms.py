@@ -17,16 +17,6 @@ class LoginForm(Form):
     password = PasswordField('Password', [DataRequired()])
 
 
-class SearchForm(Form):
-    search = StringField('search', validators=[DataRequired()])
 
-
-class InvoiceSearchForm(Form):
-    customer = StringField('customer', validators=[DataRequired()])
-    start_date = StringField('start_date', validators=[DataRequired()])
-    end_date = StringField('end_date', validators=[DataRequired()])
-
-
-class PageDownFormExample(Form):
-    pagedown = PageDownField('Enter your markdown')
-    submit = SubmitField('Submit')
+class ColorForm(Form):
+    colors = TextAreaField('colors', validators=[DataRequired()])
