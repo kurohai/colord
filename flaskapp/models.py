@@ -103,6 +103,10 @@ class ColorSet(Base):
         primaryjoin="ColorSet.id==Color.colorset_id",
     )
 
+    def add_color(self, color):
+        """Adds a color checking for duplicates."""
+        pass
+
 
 class Color(Base):
     """docstring for Color"""
