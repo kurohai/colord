@@ -3,7 +3,7 @@
 # @Author: kurohai
 # @Date:   2015-11-18 21:47:31
 # @Last Modified by:   root
-# @Last Modified time: 2016-01-04 07:45:23
+# @Last Modified time: 2016-01-24 02:21:36
 
 
 from sqlalchemy.orm import Session, scoped_session, sessionmaker
@@ -18,6 +18,7 @@ import flask.ext.restless
 from flask.ext.socketio import SocketIO
 from flask.ext.admin import Admin
 from flask.ext.admin.contrib.sqla import ModelView
+import logging
 
 import settings
 
@@ -30,6 +31,10 @@ pwd = settings.pwd
 dbpath = settings.dbpath
 dburi = settings.dburi
 
+log = logging.getLogger(__name__)
+handler = logging.StreamHandler()
+handler.level = logging.DEBUG
+log.addHandler(handler)
 
 @as_declarative()
 class BaseBase(dicto):
@@ -68,3 +73,4 @@ from log_view import log_blueprint
 
 flasktemplate.register_blueprint(blueprint)
 flasktemplate.register_blueprint(log_blueprint)
+
