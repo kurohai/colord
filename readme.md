@@ -9,8 +9,8 @@ Color Divination is designed to predict patterns in a set of data over time. Spe
 
 ### T1
 
+- add basic logging
 - add page for data display
-- add links to navbar
 - start phase 1 of algorithm
 
 ### T2
