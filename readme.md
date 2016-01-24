@@ -15,3 +15,14 @@ Color Divination is designed to predict patterns in a set of data over time. Spe
 
 ### T2
 - add logging using log model
+
+
+### Dump
+
+- parsers for each type of input
+- move color entry logic to model
+- move route logic to module
+- page for edit by date
+- add date selection to add page
+- add confirm when adding new color
+    - prevent misspelled color names
