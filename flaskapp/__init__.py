@@ -3,7 +3,7 @@
 # @Author: kurohai
 # @Date:   2015-11-18 21:47:31
 # @Last Modified by:   root
-# @Last Modified time: 2016-01-24 02:21:36
+# @Last Modified time: 2016-01-24 02:46:54
 
 
 from sqlalchemy.orm import Session, scoped_session, sessionmaker
@@ -33,6 +33,7 @@ dburi = settings.dburi
 
 log = logging.getLogger(__name__)
 handler = logging.StreamHandler()
+log.level = logging.DEBUG
 handler.level = logging.DEBUG
 log.addHandler(handler)
 

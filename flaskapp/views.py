@@ -10,6 +10,33 @@ from flaskapp import *
 
 blueprint = Blueprint(flasktemplate.appnamed, __name__)
 
+@blueprint.route('/colors/add2/', methods=['GET', 'POST'])
+def color_add2():
+    if request.method == 'GET':
+        log.info('GET /color/add/')
+    elif request.method == 'POST':
+        log.info('POST /colors/add')
+        # format data into dict
+        # call external module function
+        # return results
+
+        data = dicto(request.form)
+        data.colors = data.colors[0].split(',')
+        day = session.query(ColorSet).filter(ColorSet.date == data.date[0]).first()
+        
+        log.info('setting colorset...')
+        if not day:
+            log.info('new colorset')
+            colorset = ColorSet()
+            colorset.date = data.date[0]
+        else:
+            log.info('found colorset')
+            colorset = day
+        log.info(colorset.date)
+
+    form = ColorForm(csrf_enabled=False)
+    return render_template('public/color-form.html', text='', form=form)
+
 
 
 @blueprint.route('/colors/add/', methods=['GET', 'POST'])
