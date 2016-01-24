@@ -1,6 +1,6 @@
 """Forms to render HTML input & validate request data."""
 
-from wtforms import BooleanField, DateTimeField, PasswordField
+from wtforms import BooleanField, DateTimeField, PasswordField, DateField
 from wtforms import TextAreaField, StringField
 from wtforms.validators import Length, DataRequired
 from wtforms import validators
@@ -19,4 +19,5 @@ class LoginForm(Form):
 
 
 class ColorForm(Form):
+    date = DateField('date', validators=[DataRequired()])
     colors = TextAreaField('colors', validators=[DataRequired()])
