@@ -26,3 +26,28 @@ Color Divination is designed to predict patterns in a set of data over time. Spe
 - add date selection to add page
 - add confirm when adding new color
     - prevent misspelled color names
+
+
+## Misc Notes
+
+
+test case constraints
+
+su
+mo
+tu
+we
+th
+fr
+sa
+
+
+
+each day has a list of 5 possible colors
+the acutal colors for one day is 1 >= N <= 5
+make some repeatable patterns in data
+
+
+
+id = sequential day number
+colors = colors for that day
