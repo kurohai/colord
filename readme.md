@@ -9,6 +9,15 @@ Color Divination is designed to predict patterns in a set of data over time. Spe
 
 ### T1
 
+- get list of all colors
+- make voice model for sphinx
+- download audio recording
+- format audio if needed
+- voice recognition
+- sms if my color
+- win
+
+### T1.5
 - add basic logging
 - add page for data display
 - start phase 1 of algorithm
