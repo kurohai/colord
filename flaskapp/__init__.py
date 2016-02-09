@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # @Author: kurohai
 # @Date:   2015-11-18 21:47:31
-# @Last Modified by:   root
-# @Last Modified time: 2016-01-24 02:46:54
+# @Last Modified by:   evan
+# @Last Modified time: 2016-02-09 15:04:07
 
 
 from sqlalchemy.orm import Session, scoped_session, sessionmaker
@@ -34,7 +34,9 @@ dburi = settings.dburi
 log = logging.getLogger(__name__)
 handler = logging.StreamHandler()
 log.level = logging.DEBUG
-handler.level = logging.DEBUG
+handler.setLevel = logging.DEBUG
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
 log.addHandler(handler)
 
 @as_declarative()
