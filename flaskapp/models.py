@@ -95,7 +95,7 @@ class User(Base):
 class ColorSet(Base):
     """docstring for ColorSet"""
     id = Column(Integer, primary_key=True, autoincrement=True)
-    date = Column(Date, default=datetime.datetime.today, unique=True)
+    date = Column(Date, default=datetime.datetime.today, nullable=False)
 
     colors = relationship(
         'Color',
@@ -111,5 +111,5 @@ class ColorSet(Base):
 class Color(Base):
     """docstring for Color"""
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String, unique=True, nullable=False)
+    name = Column(String, nullable=False)
     colorset_id = Column(Integer, ForeignKey('colorset.id'))
