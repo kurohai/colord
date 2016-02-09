@@ -6,7 +6,7 @@ from pprint import pprint
 import codecs
 import os
 from flaskapp import *
-
+from dateme import parse_date
 
 blueprint = Blueprint(flasktemplate.appnamed, __name__)
 
@@ -16,31 +16,62 @@ def color_add2():
         log.info('GET /color/add/')
     elif request.method == 'POST':
         log.info('POST /colors/add')
-        # format data into dict
-        # call external module function
-        # return results
 
         data = dicto(request.form)
         data.colors = data.colors[0].split(',')
-        day = session.query(ColorSet).filter(ColorSet.date == data.date[0]).first()
-        
+
+        # need to do some date formatting here
+        # convert input date to iso8601
+        input_date = parse_date(data.date[0])
+        parsed_date = input_date.strftime('%Y-%m-%d')
+        log.info('parsed date: {0}'.format(parsed_date))
+        day = session.query(ColorSet).filter(ColorSet.date == parsed_date).first()
+
+        # get the correct colorset
         log.info('setting colorset...')
-        if not day:
+
+        # day not yet entered
+        if day is None:
             log.info('new colorset')
             colorset = ColorSet()
-            colorset.date = data.date[0]
+            colorset.date = input_date
+
+        # day previously entered
         else:
             log.info('found colorset')
             colorset = day
-        log.info(colorset.date)
+
+        # add colors to colorset
+        for c in data.colors:
+            c = c.strip()
+            log.info(c)
+            color = Color()
+            color.name = c
+
+            old_colors = [i.name for i in colorset.colors]
+            log.debug('old colors {0}'.format(old_colors))
+
+            if c != '':
+
+                # check if color already added
+                if c not in old_colors:
+                    log.info('adding color: {0}'.format(c))
+                    colorset.colors.append(color)
+                else:
+                    log.warn('color {0} already entered'.format(c))
+
+        # commit changes to db
+        log.debug(colorset.date)
+        session.add(colorset)
+        session.commit()
 
     form = ColorForm(csrf_enabled=False)
     return render_template('public/color-form.html', text='', form=form)
 
 
 
-@blueprint.route('/colors/add/', methods=['GET', 'POST'])
-def color_add():
+@blueprint.route('/colors/add-old/', methods=['GET', 'POST'])
+def color_add_old():
     if request.method == 'GET':
         log.info('GET /color/add/')
     elif request.method == 'POST':
@@ -78,6 +109,7 @@ def color_add():
                 # print old_color.id, old_color.name
                 if old_color is not None:
                     colorset.colors.append(old_color)
+
                     # colorset.date = datetime.datetime.today() + datetime.timedelta(days=1)
                     # print 'not adding color:', d
                     log.info('not adding color: {0}'.format(d))
@@ -88,8 +120,28 @@ def color_add():
 
 
 
+
     form = ColorForm(csrf_enabled=False)
     return render_template('public/color-form.html', text='', form=form)
+
+
+@blueprint.route('/colors/add/', methods=['GET', 'POST'])
+def color_add():
+    form = ColorForm(csrf_enabled=False)
+    if request.method == 'GET':
+        log.info('GET /color/add/')
+    elif request.method == 'POST':
+        log.info('POST /colors/add')
+    return render_template('public/color-form.html', text='', form=form)
+
+
+
+
+
+
+
+
+
 
 @blueprint.route('/')
 def home():

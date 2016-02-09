@@ -113,3 +113,6 @@ class Color(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False)
     colorset_id = Column(Integer, ForeignKey('colorset.id'))
+
+    def __repr__(self):
+        return '{self.id}\t {self.name}'.format(self=self)
