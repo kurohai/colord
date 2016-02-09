@@ -9,7 +9,7 @@ Color Divination is designed to predict patterns in a set of data over time. Spe
 
 ### T1
 
-- get list of all colors
+- get list of todays colors
 - make voice model for sphinx
 - download audio recording
 - format audio if needed
@@ -17,12 +17,21 @@ Color Divination is designed to predict patterns in a set of data over time. Spe
 - sms if my color
 - win
 
+
 ### T1.5
+
+- fix db unique entries
+    - remove unique=true from model
+    - add methods to model for uniqueness
+
+- get list of all colors
+- make voice model for sphinx
 - add basic logging
 - add page for data display
 - start phase 1 of algorithm
 
 ### T2
+
 - add logging using log model
 
 
